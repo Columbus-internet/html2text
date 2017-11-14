@@ -112,44 +112,44 @@ func (ctx *textifyTraverseContext) handleElement(node *html.Node) error {
 		}
 
 		str := subCtx.buf.String()
-		return ctx.emit(""\n" + str + "\n")
-// 		dividerLen := 0
-// 		for _, line := range strings.Split(str, "\n") {
-// 			if lineLen := len([]rune(line)); lineLen-1 > dividerLen {
-// 				dividerLen = lineLen - 1
-// 			}
-// 		}
-// 		var divider string
-// 		if node.DataAtom == atom.H1 {
-// 			divider = strings.Repeat("*", dividerLen)
-// 		} else {
-// 			divider = strings.Repeat("-", dividerLen)
-// 		}
+		return ctx.emit("\n" + str + "\n")
+		// 		dividerLen := 0
+		// 		for _, line := range strings.Split(str, "\n") {
+		// 			if lineLen := len([]rune(line)); lineLen-1 > dividerLen {
+		// 				dividerLen = lineLen - 1
+		// 			}
+		// 		}
+		// 		var divider string
+		// 		if node.DataAtom == atom.H1 {
+		// 			divider = strings.Repeat("*", dividerLen)
+		// 		} else {
+		// 			divider = strings.Repeat("-", dividerLen)
+		// 		}
 
-// 		if node.DataAtom == atom.H3 {
-// 			return ctx.emit("\n\n" + str + "\n" + divider + "\n\n")
-// 		}
-// 		return ctx.emit("\n\n" + divider + "\n" + str + "\n" + divider + "\n\n")
+		// 		if node.DataAtom == atom.H3 {
+		// 			return ctx.emit("\n\n" + str + "\n" + divider + "\n\n")
+		// 		}
+		// 		return ctx.emit("\n\n" + divider + "\n" + str + "\n" + divider + "\n\n")
 
 	case atom.Blockquote:
-// 		ctx.blockquoteLevel++
-// 		ctx.prefix = strings.Repeat(">", ctx.blockquoteLevel) + " "
+		// 		ctx.blockquoteLevel++
+		// 		ctx.prefix = strings.Repeat(">", ctx.blockquoteLevel) + " "
 		if err := ctx.emit("\n"); err != nil {
 			return err
 		}
-// 		if ctx.blockquoteLevel == 1 {
-// 			if err := ctx.emit("\n"); err != nil {
-// 				return err
-// 			}
-// 		}
+		// 		if ctx.blockquoteLevel == 1 {
+		// 			if err := ctx.emit("\n"); err != nil {
+		// 				return err
+		// 			}
+		// 		}
 		if err := ctx.traverseChildren(node); err != nil {
 			return err
 		}
-// 		ctx.blockquoteLevel--
-// 		ctx.prefix = strings.Repeat(">", ctx.blockquoteLevel)
-// 		if ctx.blockquoteLevel > 0 {
-// 			ctx.prefix += " "
-// 		}
+		// 		ctx.blockquoteLevel--
+		// 		ctx.prefix = strings.Repeat(">", ctx.blockquoteLevel)
+		// 		if ctx.blockquoteLevel > 0 {
+		// 			ctx.prefix += " "
+		// 		}
 		return ctx.emit("\n\n")
 
 	case atom.Div:
@@ -169,9 +169,9 @@ func (ctx *textifyTraverseContext) handleElement(node *html.Node) error {
 		return err
 
 	case atom.Li:
-// 		if err := ctx.emit("* "); err != nil {
-// 			return err
-// 		}
+		// 		if err := ctx.emit("* "); err != nil {
+		// 			return err
+		// 		}
 
 		if err := ctx.traverseChildren(node); err != nil {
 			return err
@@ -186,7 +186,7 @@ func (ctx *textifyTraverseContext) handleElement(node *html.Node) error {
 			return err
 		}
 		str := subCtx.buf.String()
-//		return ctx.emit("*" + str + "*")
+		//		return ctx.emit("*" + str + "*")
 		return ctx.emit(str)
 
 	case atom.A:
